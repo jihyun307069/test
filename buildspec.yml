@@ -6,10 +6,12 @@ phases:
     runtime-versions:
       docker: 20
     commands:
-      - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
+      - curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
-      -  mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
-      -  echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
+      - mv ./kubectl /usr/local/bin/kubectl
+      - mkdir ~/.kube
+      - aws eks --region ap-northeast-2 update-kubeconfig --name eks
+      - kubectl get po -n kube-system
   pre_build:
     commands:
       - echo $AWS_DEFAULT_REGION
