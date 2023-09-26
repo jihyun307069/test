@@ -8,8 +8,8 @@ phases:
     commands:
       - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
-        mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
-        echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
+      -  mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+      -  echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
@@ -24,7 +24,7 @@ phases:
   post_build:
     commands:
       - AWS_ECR_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-        DATE='date'
+      - DATE='date'
       - echo Build completed on $DATE
       - sed -i.bak 's#AWS_ECR_URI#'"$AWS_ECR_URI"'#' deployment.yaml
       - sed -i.bak 's#DATE_STRING#'"$DATE"'#' deployment.yaml
