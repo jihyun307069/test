@@ -10,6 +10,9 @@ phases:
       - chmod +x ./kubectl
       -  mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
       -  echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
+      -  mkdir -p $HOME/.kube
+      -  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+      -  sudo chown $(id -u):$(id -g) $HOME/.kube/config
   pre_build:
     commands:
       - echo $AWS_DEFAULT_REGION
