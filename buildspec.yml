@@ -2,6 +2,17 @@
 
 version: 0.2
 phases:
+  install:
+    runtime-versions:
+      docker: 20
+    commands:
+      - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
+      - chmod +x ./kubectl
+      - mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+      - echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
+      - aws sts get-caller-identity
+      - aws eks --region ap-northeast-2 update-kubeconfig --name myeks
+      - kubectl get po -n kube-system
   pre_build:
     commands:
       - echo $AWS_DEFAULT_REGION
