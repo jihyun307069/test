@@ -9,4 +9,4 @@ COPY ./code/ /var/www/html
 
 EXPOSE 80
 
-CMD apachectl -DFOREGROUND
+CMD apachectl -D FOREGROUND
