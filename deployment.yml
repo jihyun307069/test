@@ -21,6 +21,3 @@ spec:
         ports:
         - containerPort: 80
         imagePullPolicy: Always
-        env:
-          - name: DATE
-            value: 'DATE_STRING'
