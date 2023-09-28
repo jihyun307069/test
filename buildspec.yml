@@ -4,7 +4,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      docker: 20
+      docker: 23
     commands:
       - curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
       - chmod +x ./kubectl
