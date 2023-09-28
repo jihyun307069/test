@@ -1,14 +1,13 @@
 #Dockerfile
 
-FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+FROM ubuntu:latest
 
-RUN yum update
-RUN yum install -y httpd php
+RUN apt update
+RUN apt install -y apache2
 
-WORKDIR /var/www/html
-
-ADD /code /var/www/html
+COPY /code/index.html /var/www/html
 
 EXPOSE 80
 
-CMD ["apachectl","-DFOREGROUND"]
+CMD ["apachectl","-D","FOREGROUND"]
+
