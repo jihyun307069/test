@@ -6,7 +6,7 @@ RUN yum update
 RUN yum install -y httpd
 RUN systemctl enable httpd && systemctl start httpd
 
-COPY ./code/ /var/www/html
+COPY ./code/index.html /var/www/html
 
 EXPOSE 80
 
