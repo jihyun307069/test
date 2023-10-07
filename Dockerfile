@@ -1,14 +1,13 @@
 #Dockerfile
 
-FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+FROM public.ecr.aws/ubuntu/ubuntu:latest
 
-RUN yum update
-RUN yum install -y httpd
-RUN systemctl enable httpd && systemctl start httpd
+RUN apt-get update
+RUN apt-get install -y apache2
+
 
 COPY ./code/index.html /var/www/html
 
 EXPOSE 80
 
 CMD ["apachectl", "-D", "FOREGROUND"]
-
