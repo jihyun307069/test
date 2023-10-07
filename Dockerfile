@@ -10,5 +10,5 @@ COPY ./code/ /var/www/html
 
 EXPOSE 80
 
-ENTRYPOINT ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+ENTRYPOINT ["apachectl", "-D", "FOREGROUND"]
 
